@@ -1,5 +1,6 @@
 from ubuntu:12.04
 maintainer William Ting <io@williamting.com>
+# index.docker.io: wting/latex
 
 run echo "\
 	deb http://mirrors.digitalocean.com/ubuntu/ precise main restricted universe multiverse\n\
