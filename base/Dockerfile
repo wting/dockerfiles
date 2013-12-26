@@ -1,6 +1,6 @@
+# index.docker.io: wting/base
 from ubuntu:12.04
 maintainer William Ting <io@williamting.com>
-# index.docker.io: wting/base
 
 run echo "deb http://ftp.utexas.edu/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list
 run echo "deb http://ftp.utexas.edu/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list

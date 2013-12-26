@@ -1,23 +1,22 @@
-from ubuntu:12.04
-maintainer William Ting <io@williamting.com>
 # index.docker.io: wting/latex
+from wting/base
+maintainer William Ting <io@williamting.com>
 
-run echo -e "\
-	deb http://ftp.utexas.edu/ubuntu/ precise main restricted universe multiverse\n\
-	deb http://ftp.utexas.edu/ubuntu/ precise-security main restricted universe multiverse\n\
-	deb http://ftp.utexas.edu/ubuntu/ precise-updates main restricted universe multiverse" > \
-	/etc/apt/sources.list
-run apt-get update
-run apt-get install -y aptitude
+run aptitude update
 run aptitude upgrade -y
-
-# add LaTeX backports
 run aptitude install -y python-software-properties
+
+# LaTeX 2012
 run add-apt-repository -y ppa:texlive-backports/ppa
 run aptitude update
 
 # install packages
 run aptitude install -y \
-    texlive-latex-base texlive-xetex latex-xcolor texlive-math-extra \
-    texlive-latex-extra texlive-fonts-extra biblatex \
-    curl wget git fontconfig make
+	fontconfig \
+	texlive-latex-base \
+	texlive-xetex \
+	latex-xcolor \
+	texlive-math-extra \
+	texlive-latex-extra \
+	texlive-fonts-extra \
+	biblatex
