@@ -13,5 +13,6 @@ run aptitude install -y \
 	make \
 	git \
 	python-software-properties \
+	sudo \
 	vim
 run aptitude upgrade -y
