@@ -12,9 +12,9 @@ RUN echo "deb http://ftp.utexas.edu/ubuntu/ precise-security main restricted uni
 # apt-fast.sh downloads packages in parallel for faster installations
 ADD ./apt-fast.sh /usr/bin/apt-fast.sh
 
+# downgrading python-minimal to prevent circular dependency
 RUN apt-get update \
-	&& apt-get install -y apt-utils dialog aptitude axel \
-	&& apt-fast.sh upgrade -y \
+	&& apt-get install -y --force-yes python-minimal=2.7.3-0ubuntu2 \
 	&& apt-fast.sh install -y \
 		curl \
 		wget \
@@ -23,5 +23,5 @@ RUN apt-get update \
 		python-software-properties \
 		sudo \
 		vim-tiny \
-		fish
-	&& chsh -s /usr/bin/fish
+	&& apt-fast.sh upgrade -y \
+	&& dpkg-reconfigure -a
