@@ -2,16 +2,12 @@
 from wting/base
 maintainer William Ting <io@williamting.com>
 
-run aptitude update
-run aptitude upgrade -y
-run aptitude install -y python-software-properties
-
 # LaTeX 2012
 run add-apt-repository -y ppa:texlive-backports/ppa
 run aptitude update
 
 # install packages
-run aptitude install -y \
+run apt-fast.sh install -y \
 	fontconfig \
 	texlive-latex-base \
 	texlive-xetex \
