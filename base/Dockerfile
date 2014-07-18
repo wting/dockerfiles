@@ -2,17 +2,26 @@
 from ubuntu:12.04
 maintainer William Ting <io@williamting.com>
 
-run echo "deb http://ftp.utexas.edu/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list
-run echo "deb http://ftp.utexas.edu/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list
-run apt-get update
-run apt-get install -y aptitude
-run aptitude install -y apt-utils dialog
-run aptitude install -y \
-	curl \
-	wget \
-	make \
-	git \
-	python-software-properties \
-	sudo \
-	vim
-run aptitude upgrade -y
+ENV HOME /root
+ENV DEBIAN_FRONTEND noninteractive
+
+# Use University of Texas at Austin Mirror
+RUN echo "deb http://ftp.utexas.edu/ubuntu/ precise main restricted universe multiverse" > /etc/apt/sources.list
+RUN echo "deb http://ftp.utexas.edu/ubuntu/ precise-security main restricted universe multiverse" >> /etc/apt/sources.list
+
+# apt-fast.sh downloads packages in parallel for faster installations
+ADD ./apt-fast.sh /usr/bin/apt-fast.sh
+
+RUN apt-get update \
+	&& apt-get install -y apt-utils dialog aptitude axel \
+	&& apt-fast.sh upgrade -y \
+	&& apt-fast.sh install -y \
+		curl \
+		wget \
+		make \
+		git \
+		python-software-properties \
+		sudo \
+		vim-tiny \
+		fish
+	&& chsh -s /usr/bin/fish
