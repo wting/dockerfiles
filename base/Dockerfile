@@ -12,7 +12,8 @@ RUN echo "deb http://ftp.utexas.edu/ubuntu/ precise-security main restricted uni
 # apt-fast.sh downloads packages in parallel for faster installations
 ADD ./apt-fast.sh /usr/bin/apt-fast.sh
 
-# downgrading python-minimal to prevent circular dependency
+# NOTE(wting|2014-07-18): downgrades python-minimal to prevent circular dependency
+# NOTE(wting|2014-07-18): leaves libdrm-dev in a broken state
 RUN apt-get update \
 	&& apt-get install -y --force-yes python-minimal=2.7.3-0ubuntu2 \
 	&& apt-fast.sh install -y \
