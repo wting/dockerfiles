@@ -1,6 +1,6 @@
 # index.docker.io: wting/base
-from ubuntu:12.04
-maintainer William Ting <io@williamting.com>
+FROM ubuntu:12.04
+MAINTAINER William Ting <io@williamting.com>
 
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
