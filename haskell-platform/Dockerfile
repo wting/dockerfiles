@@ -1,4 +1,4 @@
-# index.docker.io: wting/haskell-platform_2012
+# index.docker.io: wting/haskell-platform
 FROM wting/base
 MAINTAINER William Ting <io@williamting.com>
 
