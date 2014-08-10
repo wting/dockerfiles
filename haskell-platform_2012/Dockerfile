@@ -17,5 +17,4 @@ RUN apt-fast.sh -y install \
 		libncurses-dev \
 		libpcre3-dev \
 		libreadline-dev \
-		zlib1g-dev \
-		&& cabal update
+		zlib1g-dev
